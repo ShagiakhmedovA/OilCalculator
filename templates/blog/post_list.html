@@ -5,8 +5,14 @@
     {% for post in posts %}
         <div class="post">
             <div class="date">
-                {{ post.published_date }}
+                <p>Опубликовано: {{ post.published_date }}</p>
+            {%  if post.edit_date %}
+                <p>Редактировано: {{ post.edit_date }}</p>
+            {% endif %}
             </div>
+            {% if post.picture  %}
+            <img src='{{post.picture.url}}/'  alt="image" class="basePicture">
+            {% endif %}
             <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
             <p>{{ post.text|linebreaksbr }}</p>
         </div>
