@@ -1,26 +1,30 @@
 {% extends 'blog/base.html' %}
-
+<div>
 {% block content %}
-    <div class="post">
 
+<div class="bg-green-300 lg:w-3/4 ml-auto mr-auto mb-4 rounded-lg text-left p-2 mt-4 pl-4">
         {% if post.published_date %}
-            <div class="date">
-                <p>Опубликовано: {{ post.published_date }}</p>
+            <div class="mb-4 pl-2">
+                <p class="text-sm mt-4">Опубликовано: {{ post.published_date }}</p>
             {%  if post.edit_date %}
-                <p>Редактировано: {{ post.edit_date }}</p>
+                <p class="text-sm mb-4">Редактировано: {{ post.edit_date }}</p>
             {% endif %}
             </div>
         {% endif %}
-
-        {% if user.is_authenticated %}
-        <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
-        <a class="btn btn-default" href="{% url 'post_delete' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
-        {% endif %}
-
-        <h1>{{ post.title }}</h1>
+        <h1 class="text-gray-900 text-2xl mb-4 font-bold">{{ post.title }}</h1>
+    <div class="flex">
         {% if post.picture %}
-        <img class="post_detailPicture" src='{{post.picture.url}}/' alt="post image">
+        <img class="w-1/2 mb-4 mr-2 rounded-lg" src='{{post.picture.url}}/' alt="post image">
         {% endif %}
-        <p>{{ post.text }}</p>
+        <p class="text-base mr-2 mb-8 text-justify break-normal">{{ post.text }}</p>
+    </div>
+
+            {% if user.is_authenticated %}
+                <div class="pb-4 text-sm">
+        <a class="block flex bg-green-200 pl-2 mr-4 mt-8 w-1/4" href="{% url 'post_edit' pk=post.pk %}"> Редактировать</a>
+        <a class="block flex bg-green-200 pl-2 mr-4 mt-2 w-1/4" href="{% url 'post_delete' pk=post.pk %}"> Удалить</a>
+                </div>
+        {% endif %}
     </div>
 {% endblock %}
+</div>

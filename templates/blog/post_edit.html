@@ -1,10 +1,12 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-    <h1>New post</h1>
-    <form method="POST" class="post-form" enctype="multipart/form-data">
+    <div class="lg:w-full h-full bg-green-300 pl-4 mb-8 rounded mt-8 p-4">
+    <h1 class="mb-2">Введите содержание поста</h1>
+    <form method="POST" class="mt-4 pb-2" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Save</button>
+        <button type="submit" class="block rounded bg-green-200 p-2 w-1/4 mt-4 mb-4">Сохранить</button>
     </form>
+    </div>
 {% endblock %}

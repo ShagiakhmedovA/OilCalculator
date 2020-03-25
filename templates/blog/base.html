@@ -3,26 +3,62 @@
 <html lang="en">
 
  <head>
-        <title>Django blog</title>
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
-    </head>
+        <title>Курсовая</title>
+        <link rel="stylesheet" href="{% static 'css/tailwind.min.css' %}">
+        <script src="js/jquery-3.4.1.js"></script>
+</head>
 
-<body>
-    <div class="page-header">
+<style>
+  html, body { background: url(/media/bg.jpg);
+         height: 100%;}
+</style>
+
+    <body>
+{#wrapper#}
+<div class="relative min-h-full">
+
+        <nav class="flex items-center justify-between flex-wrap bg-green-800 p-8">
+  <div class="flex items-center flex-shrink-0 text-white mr-6">
+   <span class="font-semibold text-xl tracking-tight">Нефтяной расчёт</span>
+  </div>
+  <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+    <div class="text-sm lg:flex-grow">
+      <a href="/" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-teal-300 mr-4">
+        Главная</a>
+      <a class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-teal-300 mr-4">
+        О программе</a>
+      <a class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-teal-300 mr-4">
+        Теория</a>
+      <a class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-teal-300 mr-4">
+        Расчёты</a>
         {% if user.is_authenticated %}
-        <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+      <a href="{% url 'logout'%}" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-teal-300 mr-4">
+        Выход</a>
+        {% else %}
+        <a href="{% url 'login'%}" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-teal-300 mr-4">
+        Вход</a>
+        <a href="{% url 'django_registration_register'%}" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-teal-300 mr-4">
+        Регистрация</a>
         {% endif %}
-        <h1><a href="/">Django Blog</a></h1>
     </div>
-    <div class="content container">
-        <div class="row">
-            <div class="col-md-8">
+
+
+  </div>
+</nav>
+{#content#}
+    <div class="w-full pb-16">
+            <div>
             {% block content %}
             {% endblock %}
             </div>
-        </div>
     </div>
-</body>
+
+
+<div class="absolute left-0 bottom-0 mt-8 w-full h-8 bg-green-800">
+    <div class="footer-col"><span>Сайт</span></div>
+</div>
+
+</div>
+
+    </body>
 </html>

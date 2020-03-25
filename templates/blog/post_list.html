@@ -1,20 +1,33 @@
 {% extends 'blog/base.html' %}
 {% load static %}
-
+        <div class="bg-green-300 lg:w-2/3 mt-4 lg:ml-auto lg:mr-auto rounded-lg text-left p-2 shadow-md">
+            <a href="{% url 'post_new' %}" class="" >Добавить запись</a>
+        </div>
 {% block content %}
     {% for post in posts %}
-        <div class="post">
-            <div class="date">
-                <p>Опубликовано: {{ post.published_date }}</p>
+        <div class="bg-green-300 lg:w-2/3 mt-4 lg:ml-auto lg:mr-auto rounded-lg text-left p-2 shadow-md">
+
+            <div class="mb-2 pl-2">
+                <p class="text-sm mt-2">{{ post.published_date }}</p>
             {%  if post.edit_date %}
-                <p>Редактировано: {{ post.edit_date }}</p>
+                <p class="text-sm">Ред.: {{ post.edit_date }}</p>
             {% endif %}
             </div>
+
+            <hr>
+
+            <h1 class="text-2xl text-gray-900 font-bold m-2"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+
+            <div class="lg:flex">
             {% if post.picture  %}
-            <img src='{{post.picture.url}}/'  alt="image" class="basePicture">
+            <img class="lg:w-48 mb-4 ml-2 mr-2 rounded" src='{{post.picture.url}}/'  alt="image">
             {% endif %}
-            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-            <p>{{ post.text|linebreaksbr }}</p>
+            <p class="text-base ml-2 mr-2 text-justify break-normal">{{ post.text|linebreaksbr }}</p>
+            </div>
+
+            <hr>
+
+            <p class="pl-2">Опубликовано: {{ post.author }}</p>
         </div>
     {% endfor %}
 {% endblock %}
