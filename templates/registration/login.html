@@ -1,7 +1,12 @@
-{% extends "blog/base.html" %}
+{% extends "pages/base.html" %}
+{% block title %}Авторизация{% endblock %}
 
 {% block content %}
-<div class="lg:w-1/4 bg-green-300 ml-auto mr-auto rounded-lg text-left p-2 mt-4">
+
+{% if user.is_authenticated %}
+    <p class="text-white font-bold">Ваш аккаунт не имеет доступа к этой странице.</p>
+{% else %}
+<div class="lg:w-1/4 bg-gray-300 ml-auto mr-auto rounded-lg text-left p-2 mt-4">
 
 <form method="post" action="{% url 'login' %}">
 
@@ -10,7 +15,7 @@
   <table class="mr-auto ml-auto">
 
     <tr>
-      <td>{{ form.username.label_tag }}</td>
+      <td>Логин:</td>
       <td>{{ form.username }}</td>
     </tr>
 
@@ -21,20 +26,22 @@
 
   </table>
 
-<input class="w-full bg-green-800 ml-auto mr-auto rounded text-white hover:text-teal-300" type="submit" value="Войти" />
-
-{% if user.is_authenticated %}
-    <p>Ваш аккаунт не имеет доступа к этой странице.</p>
-{% endif %}
+<input class="w-full bg-gray-700 ml-auto mr-auto rounded text-white hover:text-teal-300" type="submit" value="Войти" />
 
 </form>
 
 </div>
 
+
+
 {% if form.errors %}
-<div class="bg-green-300 lg:w-1/2 ml-auto mr-auto rounded-lg text-left p-2 mt-4">
+<div class="bg-gray-300 lg:w-1/2 ml-auto mr-auto rounded-lg text-left p-2 mt-4">
   <p>Неправильный логин/пароль</p>
 </div>
+{% endif %}
+
+
+
 {% endif %}
 
 {% endblock %}

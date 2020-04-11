@@ -1,47 +1,43 @@
-{% extends 'blog/base.html' %}
-
+{% extends 'pages/base.html' %}
+{% block title %}Регистрация{% endblock %}
 {% block content %}
-<div class="lg:w-1/3 rounded bg-green-300 ml-auto mr-auto mt-4">
+<div class="lg:w-1/3 rounded bg-gray-300 ml-auto mr-auto mt-4">
 
-{% if next %}
   {% if user.is_authenticated %}
-    <p class="text-red">Ваш аккаунт не имеет доступа к этой странице.</p>
+    <span class="text-red-900 font-bold ml-4">Ваш аккаунт не имеет доступа к этой странице.</span>
   {% else %}
-    <p>Авторизуйтесь, чтобы увидеть эту страницу</p>
-  {% endif %}
-{% endif %}
-    
-    <div class="bg-green-900 w-full rounded-t-lg">
+    <div class="bg-gray-700 w-full rounded-t">
         <span class="ml-6 font-semibold text-white text-xl">Регистрация</span>
     </div>
-    
-    <div class="w-full rounded bg-green-300 ml-auto mr-auto mt-4 pb-1 pt-1 pl-6 pr-6">
-        <form method="POST" class="" enctype="multipart/form-data">
+
+    <div class="w-full rounded bg-gray-300 ml-auto mr-auto mt-4 pb-1 pt-1 pl-6 pr-6">
+      <form method="POST" class="" enctype="multipart/form-data">
           {% csrf_token %}
-                    <tr class="required"><th><label class="required" for="id_username">Логин</label></th><br>
-                    <td><input class="w-2/3" type="text" name="username" maxlength="150" autofocus required id="id_username"></td></tr><br>
+          <span class="required"><label class="required" for="id_username">Логин пользователя:</label><br>
+          <input class="w-full" pattern="^[a-zA-Z0-9]+$" autocomplete="off" type="text" name="username" maxlength="150" autofocus required id="id_username"></span>
 
-                    <tr class="required"><th><label class="required" for="id_email">Email</label></th><br>
-                    <td><input class="w-2/3" type="email" name="email" maxlength="254" required id="id_email"></td></tr><br>
+          <span class="required"><label class="required" for="id_email">Эл. почта:</label><br>
+          <input class="w-full" autocomplete="off" type="email" name="email" maxlength="254" required id="id_email"></span>
 
-                    <tr class="required"><th><label class="required" for="id_password1">Пароль:</label></th><td><br>
-                    <input class="w-2/3" type="password" name="password1" required id="id_password1"><span class="helptext"></span></td></tr><br>
+          <span class="required"><label class="required" for="id_password1">Пароль:</label><br>
+          <input class="w-full" autocomplete="off" type="password" name="password1" required id="id_password1"></span>
 
-                    <tr class="required"><th><label class="required" for="id_password2">Подтверждение пароля:</label></th><td><br>
-                    <input class="w-2/3" type="password" name="password2" required id="id_password2"></td></tr><br>
+          <span class="required"><label class="required" for="id_password2">Подтверждение пароля:</label><br>
+          <input class="w-full" autocomplete="off" type="password" name="password2" required id="id_password2"></span>
 
-                <button type="submit" class="block rounded bg-green-200 p-2 w-1/4 mr-auto ml-auto mt-4 mb-4">Сохранить</button>
-        </form>
+        <button type="submit" class="block rounded bg-gray-400 p-2 w-full mr-auto ml-auto mt-4 mb-4">Сохранить</button>
+      </form>
     </div>
-    <div class="bg-green-900 lg:w-full rounded-b-lg">
-        <span class="ml-6 font-semibold text-white text-xl"></span>
-    </div>    
-</div>
+      <div class="bg-gray-700 lg:w-full rounded-b">
+          <span class="ml-6 font-semibold text-white text-xl"></span>
+      </div>
+    </div>
 
-<div class="lg:w-1/3 rounded bg-green-300 ml-auto mr-auto mt-4 pb-1 pt-1 pl-6 pr-6">
-    <ul class="text-sm"><li>*Ваш пароль не должен совпадать с вашим именем.</li>
-        <li>*Ваш пароль должен содержать как минимум 8 символов.</li>
-        <li>*Ваш пароль не может состоять только из цифр.</li></ul>
-</div>
+    <div class="lg:w-1/3 rounded bg-gray-300 ml-auto mr-auto mt-4 pb-1 pt-1 pl-6 pr-6">
+        <ul class="text-sm"><li>*Ваш пароль не должен совпадать с вашим именем.</li>
+            <li>*Ваш пароль должен содержать как минимум 8 символов.</li>
+            <li>*Ваш пароль не может состоять только из цифр.</li></ul>
+    </div>
+  {% endif %}
 
 {% endblock %}

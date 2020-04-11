@@ -1,0 +1,53 @@
+def calculation_form(request):
+    return render(request, 'pages/calculation_form.html')
+
+
+def expression(request):
+
+    V1 = str(request.GET['V1'])
+    V2 = str(request.GET['V2'])
+    RZAB1 = str(request.GET['RZAB1'])
+    RZAB2 = str(request.GET['RZAB2'])
+    RPL = str(request.GET['RPL'])
+
+    V1 = V1.replace(',', '.')
+    V2 = V2.replace(',', '.')
+    RZAB1 = RZAB1.replace(',', '.')
+    RZAB2 = RZAB2.replace(',', '.')
+    RPL = RPL.replace(',', '.')
+
+    try:
+        V1 = float(V1)
+        V2 = float(V2)
+        RZAB1 = float(RZAB1)
+        RZAB2 = float(RZAB2)
+        RPL = float(RPL)
+    except ValueError:
+        return render(request, 'pages/calculation_form.html',{
+        'V1_S':V1, 'V2_S':V2,
+        'RZAB1_S':RZAB1, 'RZAB2_S':RZAB2,
+        'RPL_S':RPL,
+        'MESSAGE':'Ошибка: вы ввели неверный тип данных'})
+
+    try:
+        DEP1 = math.pow(RPL, 2)-math.pow(RZAB1, 2)
+        DEP2 = math.pow(RPL, 2)-math.pow(RZAB2, 2)
+        RASH1 = DEP1/V1
+        RASH2 = DEP2/V2
+        B = ((RASH2)-(RASH1))/(V2-V1)
+        A = (RASH1)-(B/V1)
+    except ZeroDivisionError:
+        return render(request, 'pages/calculation_form.html',{
+        'V1_S':V1, 'V2_S':V2,
+        'RZAB1_S':RZAB1, 'RZAB2_S':RZAB2,
+        'DEP1_S':DEP1, 'DEP2_S':DEP2,
+        'RPL_S':RPL,
+        'MESSAGE':'Ошибка: деление на ноль'})
+
+    return render(request, 'pages/calculation_form.html',{'result_A':A, 'result_B':B,
+    'V1_S':V1, 'V2_S':V2,
+    'RZAB1_S':RZAB1, 'RZAB2_S':RZAB2,
+    'DEP1_S':DEP1, 'DEP2_S':DEP2,
+    'RASH1_S':RASH1, 'RASH2_S':RASH2,
+    'RPL_S':RPL,
+    'MESSAGE':'Расчёт произведен успешно'})

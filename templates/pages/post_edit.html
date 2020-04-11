@@ -1,0 +1,31 @@
+{% extends 'pages/base.html' %}
+{% block title %}Создание записи{% endblock %}
+
+{% block content %}
+<div class="lg:w-2/3 bg-gray-400 mb-8 rounded mt-8 ml-auto mr-auto">
+    <div class="pl-4 pt-2">
+        <h1 class="mb-2">Введите содержание поста</h1>
+    </div>
+
+    <div class="pl-4 bg-gray-300">
+        <form method="POST" class="mt-4 pb-2" enctype="multipart/form-data">
+            {% csrf_token %}
+
+                <span><label for="id_title">Title:</label><br>
+                <input class="w-2/3" type="text" name="title" maxlength="50" required id="id_title"></span><br>
+
+                <span><label for="id_text">Text:</label><br>
+                <textarea class="w-2/3" name="text" cols="40" rows="10" required id="id_text"></textarea></p>
+
+                <span><label for="id_picture">Picture:</label><br>
+                <input class="w-2/3" type="file" name="picture" accept="image/*" id="id_picture"></span>
+
+                <button type="submit" class="block rounded bg-gray-500 p-2 w-1/4 mt-4 mb-4">Сохранить</button>
+        </form>
+    </div>
+
+
+
+</div>
+
+{% endblock %}

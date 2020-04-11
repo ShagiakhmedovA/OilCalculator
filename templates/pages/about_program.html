@@ -1,0 +1,102 @@
+{% extends 'pages/base.html' %}
+{% block title %}О программе{% endblock %}
+{% block content %}
+
+<div class="lg:flex mt-2">
+
+    <div class="bg-gray-400 lg:w-1/4 m-4 rounded text-left p-2 pl-4">
+
+            <h1 class="text-gray-900 text-xl mb-4 font-bold sm:text-sm md:text-base lg:text-lg xl:text-xl">О программе</h1>
+            <hr class="">
+            <img src="/media/web.jpg" class=" sm:w-1/2 md:w-full">
+
+        <span>Содержание:</span>
+        <ul class="list-decimal ml-4 mt-4 class italic font-semibold">
+            <li class="pb-2 hover:underline hover:text-teal-900"><a href="#anchor1">Django</a></li>
+            <li class="pb-2 hover:underline hover:text-teal-900"><a href="#anchor2">HTML</a></li>
+            <li class="pb-2 hover:underline hover:text-teal-900"><a href="#anchor3">CSS</a></li>
+            <li class="pb-2 hover:underline hover:text-teal-900"><a href="#anchor4">TailWind</a></li>
+            <li class="pb-2 hover:underline hover:text-teal-900"><a href="#anchor5">JavaScript</a></li>
+            <li class="pb-2 hover:underline hover:text-teal-900"><a href="#anchor6">JQuery</a></li>
+            <li class="pb-2 hover:underline hover:text-teal-900"><a href="#anchor7">MySQL</a></li>
+            <li class="pb-2 hover:underline hover:text-teal-900"><a href="#anchor8">PhpMyAdmin</a></li>
+        </ul>
+
+    </div>
+
+
+    <div class="bg-gray-300 lg:w-3/4 m-4 rounded text-left pr-8 pl-8">
+
+        <hr class="mt-8 mb-2"8>
+
+        <p class="text-justify break-normal font-medium">
+            Для разработки к проекта выбран клиент-серверный тип приложения.
+            Клиентская часть написана на языке программирования Python Django, HTML, сервер базы данных MySQL, 
+            на стороне пользователя использовался язык гипертекстовой разметки HTML, фреймворк языка таблиц стилей CSS Tailwind, 
+            язык скриптов JavaScript и библиотека JQuery.
+        </p>
+
+        <p class="text-justify break-normal font-medium"><a name="anchor1"></a>
+            Django — свободный фреймворк для веб-приложений на языке Python. 
+            Проект поддерживается организацией Django Software Foundation.
+            Сайт на Django строится из одного или нескольких приложений, которые рекомендуется делать отчуждаемыми и подключаемыми.
+            Для работы с базой данных Django использует собственный ORM, в котором модель данных описывается классами Python, 
+            и по ней генерируется схема базы данных. 
+        </p>
+
+        <p class="text-justify break-normal font-medium">
+            Django имеет некоторые преимущества перед другими языками программно-аппаратной части веб-приложений. 
+            Django позволяет запускать локальный сервер для сайтов без необходимости в установке сторонних программ и расширений,
+            для этого достаточно использовать нужную команду в командной строке. Django является интерпретируемым языком. 
+            Код компилируется во время запросов пользователя, это делает язык гибким, но сравнительно медленным, 
+            так как время пользователя уходит на процесс компиляции кода.
+        </p>
+
+        <p class="text-justify break-normal font-medium"><a name="anchor2"></a>
+            HTML – стандартизированный язык разметки документов. Язык HTML интерпретируется браузерами; 
+            полученный в результате интерпретации форматированный текст отображается на экране монитора компьютера или мобильного устройства.
+        </p>
+
+        <p class="text-justify break-normal font-medium"><a name="anchor3"></a>
+            CSS — формальный язык описания внешнего вида документа, 
+            написанного с использованием языка разметки. 
+        </p>
+
+        <p class="text-justify break-normal font-medium"><a name="anchor4"></a>
+            В данном проекте использовался Tailwind, настраиваемый низкоуровневый CSS-фреймворк, 
+            который предоставляет низкоуровневые служебные классы, которые позволяют создавать полностью индивидуальный дизайн веб-страниц,
+            не покидая HTML.
+        </p>
+
+        <p class="text-justify break-normal font-medium"><a name="anchor5"></a>    
+            JavaScript — прототипно-ориентированный сценарный язык программирования. 
+            JavaScript обычно используется как встраиваемый язык для программного доступа к объектам приложений. 
+            Наиболее широкое применение находит в браузерах как язык сценариев для придания интерактивности веб-страницам. 
+            Основные архитектурные черты: динамическая типизация, слабая типизация, автоматическое управление памятью, 
+            прототипное программирование, функции как объекты первого класса.
+        </p
+        >
+        <p class="text-justify break-normal font-medium"><a name="anchor6"></a>
+            jQuery — набор функций JavaScript, фокусирующийся на взаимодействии JavaScript и HTML.
+        </p>
+
+        <p class="text-justify break-normal font-medium"><a name="anchor7"></a>
+            Mysql – это реляционная система управления базами данных. То есть данные в ее базах хранятся 
+            в виде логически связанных между собой таблиц, доступ к которым осуществляется с помощью языка запросов SQL.
+            Это достаточно быстрая, надежная и, главное, простая в использовании СУБД, вполне подходящая для не слишком глобальных проектов. 
+            Работать с Mysql можно не только в текстовом режиме, но и в графическом. 
+        </p>
+
+        <p class="text-justify break-normal font-medium"><a name="anchor8"></a>
+            Существует очень популярный визуальный интерфейс 
+            для работы с этой СУБД. Называется он PhpMyAdmin. 
+            Этот интерфейс позволяет значительно упростить работу с базами данных в Mysql.
+            PhpMyAdmin позволяет пользоваться базовыми SQL функциями работы с данными.	В PhpMyAdmin они сведены к интуитивно 
+            понятным интерфейсам и действиям.
+        </p>
+
+    </div>
+
+</div>
+
+{% endblock %}

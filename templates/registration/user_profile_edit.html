@@ -1,0 +1,21 @@
+{% extends 'pages/base.html' %}
+{% block title %}{{ user.username }} - редактирование{% endblock %}
+
+{% block content %}
+    <div class="lg:w-2/3 ml-auto mr-auto bg-gray-400 pl-4 p-4 mb-8 mt-8 rounded">
+    <h1 class="mb-2">Введите пользовательские данные</h1>
+    <form method="POST" class="mt-4 pb-2 pl-4" enctype="multipart/form-data">
+        {% csrf_token %}
+            <span><label for="id_first_name">Имя:</label><br>
+            <input type="text" pattern="^[А-Яа-яЁё\s]+$" autocomplete="off" name="first_name" value="{{ user.first_name }}" maxlength="30" id="id_first_name"></span><br>
+
+            <span><label for="id_last_name">Фамилия:</label><br>
+            <input type="text" pattern="^[А-Яа-яЁё\s]+$" autocomplete="off" name="last_name" value="{{ user.last_name }}" maxlength="150" id="id_last_name"></span><br>
+
+            <span><label for="id_email">Адрес электронной почты:</label><br>
+            <input type="email" name="email" value="{{ user.email }}" maxlength="254" id="id_email"></span><br>
+
+        <button type="submit" class="block rounded bg-gray-500 p-1 w-1/4 mt-4 mb-2">Сохранить</button>
+    </form>
+    </div>
+{% endblock %}

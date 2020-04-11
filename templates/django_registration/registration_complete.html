@@ -1,12 +1,13 @@
-{% extends 'blog/base.html' %}
+{% extends 'pages/base.html' %}
+{% block title %}Успешная регистрация{% endblock %}
 {% block content %}
 <div class="mr-auto ml-auto">
-    <div class="w-1/4 bg-green-300  rounded ml-auto mr-auto mt-8 p-4 pl-4">
-        <p>Регистрация завершена успешно</p>
-            <p>Добро пожаловать, <b>{{ user.username}}</b></p>
-                <div class="bg-green-600 ml-auto mr-auto mb-2 rounded p-4 pl-4">
-            <a href="/" class="text-black hover:text-teal-300">На главную</a>
-        </div>
+    <div class="w-1/4 bg-gray-300  rounded ml-auto mr-auto mt-8 p-4 pl-4">
+        <span>Регистрация завершена успешно</span>
+            <span>Добро пожаловать, <b>{{ user.username}}</b></span>
+            <a href="/" class="text-black hover:text-teal-300"><div class="bg-gray-600 ml-auto mr-auto mb-2 rounded p-4 pl-4">
+            На главную
+        </div></a>
     </div>
 </div>
 {% endblock %}

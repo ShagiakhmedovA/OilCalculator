@@ -1,0 +1,63 @@
+{% extends 'pages/base.html' %}
+{% block title %}История расчётов{% endblock %}
+
+{% block content %}
+
+{% if user.is_staff %}
+<table class="mt-8 ml-auto mr-auto"> 
+    <tr>
+        <th class="border-solid border-2 border-gray-600 bg-gray-300">
+            Автор расчёта
+        </th >
+        <th class="border-solid border-2 border-gray-600 bg-gray-300">
+            Дата расчёта
+        </th>
+        <th class="border-solid border-2 border-gray-600 bg-gray-300">
+            Вводные данные
+        </th>
+        <th class="border-solid border-2 border-gray-600 bg-gray-300">
+            Выходные данные
+        </th>
+        <th class="border-solid border-2 border-gray-600 bg-gray-300">
+            ID Расчёта
+        </th>
+        <th class="border-solid border-2 border-gray-600 bg-gray-300">
+            Действие
+        </th>
+    </tr>
+{% for calculation in calculations %}
+<tr>
+    <td class="border-solid border-2 border-gray-600 bg-gray-300 text-center p-4">
+        {{ calculation.author }}
+    </td>
+    <td class="border-solid border-2 border-gray-600 bg-gray-300 text-center p-4">
+        {{ calculation.date }}
+    </td>
+    <td class="border-solid border-2 border-gray-600 bg-gray-300 text-center p-4 pl-6 pr-6">
+        Дебит газа V<sub>1</sub> = {{ calculation.V1 }}<br>
+        Дебит газа V<sub>2</sub> = {{ calculation.V2 }}<br>
+        Забойное давление ρ<sub>заб(1)</sub> = {{ calculation.RZAB1 }}<br>
+        Забойное давление ρ<sub>заб(2)</sub> = {{ calculation.RZAB2 }}<br>
+        Пластовое давление = {{ calculation.RPL }}<br>
+    </td>
+    <td class="border-solid border-2 border-gray-600 bg-gray-300 text-center p-4">
+        <span>(ρ<sup>2</sup>‎<sub>пл</sub>-ρ<sup>2</sup>‎<sub>заб</sub>) = {{ calculation.DEP1 }}     <br></span>
+        <span>(ρ<sup>2</sup>‎<sub>пл</sub>-ρ<sup>2</sup>‎<sub>заб</sub>) = {{ calculation.DEP2 }}     <br></span>
+        <span>(ρ<sup>2</sup>‎<sub>пл</sub>-ρ<sup>2</sup>‎<sub>заб</sub>)/V = {{ calculation.RASH1 }}  <br></span>
+        <span>(ρ<sup>2</sup>‎<sub>пл</sub>-ρ<sup>2</sup>‎<sub>заб</sub>)/V = {{ calculation.RASH2 }}  <br></span>
+        <span>Коэф. А = {{ calculation.A }}                                                         <br></span>
+        <span>Коэф. В = {{ calculation.B }}                                                         <br></span>
+    </td>
+    <td class="border-solid border-2 border-gray-600 bg-gray-300 text-center p-4">
+        <a href="{% url 'calculation_detail' pk=calculation.pk %}">{{ calculation.pk }}</a>
+    </td>
+    <td class="border-solid border-2 border-gray-600 bg-gray-300 text-center p-4">
+        <a href="{% url 'calculation_delete' pk=calculation.pk %}"><button type="button" class="bg-gray-700 text-white h-16 w-20">Удалить</button></a>
+    </td>
+</tr>
+{% endfor %}
+</table>
+{% else %}
+    <span class="text-red font-bold italic text-xl">У вас нет доступа к этой странице</span>
+{% endif %}
+{% endblock %}

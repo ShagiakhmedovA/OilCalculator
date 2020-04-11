@@ -1,0 +1,100 @@
+{% extends 'pages/base.html' %}
+{% block title %}Расчёты{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<div>
+    <div class="md:w-1/3 mt-4 mb-4 ml-auto mr-auto p-2 bg-gray-300 border-solid border-4 border-gray-600 rounded">
+        {% if MESSAGE %}
+        <p class="text-center font-bold">{{MESSAGE}}</p>
+        {% else %}
+        <p class="text-center italic">Расчёт коэффициентов уравнения притока газа к скважине</p>
+        {% endif %}
+    </div>
+
+
+
+    <div class="lg:flex">
+        <div class="w-1/2 bg-gray-300 border-solid border-4 border-gray-600 sm:ml-auto sm:mr-auto lg:mr-4 lg:ml-4 rounded">
+
+            <div class="w-full bg-gray-500 border-solid">
+                <p class="text-center italic">Ввод:</p>
+            </div>
+
+            <form action="expression">
+                <table class="w-full">
+                    <tr>
+                        <th class="border-solid border-2 border-gray-600 h-16">Режим работы скважины</th>  
+                        <th class="border-solid border-2 border-gray-600 h-16">1</th>    
+                        <th class="border-solid border-2 border-gray-600 h-16">2</th>  
+                    </tr>
+                    <tr>
+                        <th class="border-solid border-2 border-gray-600 w-1/3">Дебит газа, 10<sup>6</sup>м<sup>3</sup>/сут</th>   
+                        <td class="border-solid border-2 border-gray-600"><input type="text" autocomplete="off" name="V1" value="{% if V1_S %}{{ V1_S }}{% endif %}" class="w-full h-16 text-center"></td>   
+                        <td class="border-solid border-2 border-gray-600"><input type="text" autocomplete="off" name="V2" value="{% if V2_S %}{{ V2_S }}{% endif %}" class="w-full h-16 text-center"></td>   
+                    </tr>
+                    <tr>
+                        <th class="border-solid border-2 border-gray-600 w-1/3">Забойное давление, МПа</th>   
+                        <td class="border-solid border-2 border-gray-600"><input type="text" autocomplete="off" value="{% if RZAB1_S %}{{ RZAB1_S }}{% endif %}" name="RZAB1" class="w-full h-16 text-center"></td>   
+                        <td class="border-solid border-2 border-gray-600"><input type="text" autocomplete="off" value="{% if RZAB2_S %}{{ RZAB2_S }}{% endif %}" name="RZAB2" class="w-full h-16 text-center"></td>   
+                    </tr>
+                </table>
+                <table class="w-full">
+                    <tr>
+                        <th class="border-solid border-2 border-gray-600 w-1/3">Пластовое давление в скважине ρ<sub>пл</sub>:</th>   
+                        <td class="border-solid border-2 border-gray-600 w-2/3"><input type="text" autocomplete="off" value="{% if RPL_S %}{{ RPL_S }}{% else %}{% endif %}" name="RPL" class="w-full h-16 text-center"></td>    
+                    </tr>
+                </table>
+                    <button type="submit" class="block bg-gray-800 text-gray-300 p-2 ml-auto mr-auto mt-4 mb-4">Выполнить расчёт</button>
+            </form>
+
+        </div>
+        <div class="w-1/2 bg-gray-300 border-solid border-4 border-gray-600 sm:ml-auto sm:mr-auto lg:ml-4 lg:mr-4 rounded">
+
+            <div class="w-full bg-gray-500 border-solid">
+                <p class="text-center italic">Вывод:</p>
+            </div>
+            <table class="w-full">
+                <tr>
+                    <th class="border-solid border-2 border-gray-600 h-16">Режим работы скважины</th>  
+                    <th class="border-solid border-2 border-gray-600 h-16">1</th>    
+                    <th class="border-solid border-2 border-gray-600 h-16">2</th>  
+                </tr>
+                <tr>
+                    <th class="border-solid border-2 border-gray-600 h-16 w-1/3">(ρ<sup>2</sup>‎<sub>пл</sub>-ρ<sup>2</sup>‎<sub>заб</sub>), МПа<sup>2</sup></th>   
+                    <td class="border-solid border-2 border-gray-600 h-16 1/3 text-center">{{ DEP1_S }}</td>   
+                    <td class="border-solid border-2 border-gray-600 h-16 1/3 text-center">{{ DEP2_S }}</td>   
+                </tr>
+                <tr>
+                    <th class="border-solid border-2 border-gray-600 h-16 w-1/3">(ρ<sup>2</sup>‎<sub>пл</sub>-ρ<sup>2</sup>‎<sub>заб</sub>)/V, 10<sup>6</sup>*МПа<sup>2</sup>/м<sup>3</sup></th>   
+                    <td class="border-solid border-2 border-gray-600 h-16 w-1/3 text-center">{{ RASH1_S }}</td>   
+                    <td class="border-solid border-2 border-gray-600 h-16 w-1/3 text-center">{{ RASH2_S }}</td>      
+                </tr>
+            </table>
+            <table class="w-full">
+                <tr>
+                    <th class="border-solid border-2 border-gray-600 w-1/3 h-16">Коэффициент</th>
+                    <th class="border-solid border-2 border-gray-600 w-2/3 h-16">Значение</th>
+                </tr>
+                <tr>
+                    <th class="border-solid border-2 border-gray-600 w-1/3 h-16">A</th>
+                    <td class="border-solid border-2 border-gray-600 w-2/3 h-16 bg-white text-center">{{ result_A }}</td>
+                </tr>
+                <tr>
+                    <th class="border-solid border-2 border-gray-600 w-1/3 h-16">B</th>
+                    <td class="border-solid border-2 border-gray-600 w-2/3 h-16 bg-white text-center">{{ result_B }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+{% else %}
+
+<div class="md:w-1/3 mt-4 mb-4 ml-auto mr-auto p-2 bg-gray-300 border-solid border-4 border-gray-600 rounded">
+    <p class="text-center italic">Авторизуйтесь для получения доступа к расчётам</p>
+</div>
+
+{% endif %}
+
+{% endblock %}

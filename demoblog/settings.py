@@ -74,16 +74,13 @@ TEMPLATES = [
 WSGI_APPLICATION = 'demoblog.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
         'NAME': 'neftcalc',
         'USER': 'root',
         'PASSWORD': '',
-        'HOST': '127.0.0.1',   # Or an IP Address that your DB is hosted on
+        'HOST': '127.0.0.1',
         'PORT': '3306',
     }
 }
@@ -102,6 +99,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+]
+
+AUTH_LOGIN_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
 ]
 
